@@ -1,0 +1,19 @@
+.Scoreboard__img {
+  height: 100%;
+  width: 100%;
+}
+
+.Scoreboard__container {
+  margin: 0 auto;
+  height: 43vh;
+  aspect-ratio: 10/6;
+}
+
+.Scoreboard__left-grid {
+  background-size: cover;
+}
+
+.Scoreboard__right-grid {
+  background-size: cover;
+  background-position: right;
+}

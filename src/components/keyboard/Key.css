@@ -1,0 +1,13 @@
+button.Key {
+  display: grid;
+  border: 3px solid black;
+  color: white;
+  cursor: pointer;
+  background-color: #0e185f;
+  transition: all 1s;
+}
+
+button.Key__disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

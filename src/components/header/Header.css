@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Yeseva+One&display=swap");
+
+h4.Header__font-family {
+  font-family: "Yeseva One", cursive;
+}
+
+h4.Header__color {
+  color: #0e185f;
+}

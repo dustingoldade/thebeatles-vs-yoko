@@ -1,0 +1,17 @@
+.NewGameBtn {
+  color: white;
+  display: grid;
+  place-content: center;
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 4px solid black;
+  background-color: #0e185f;
+  margin-top: 2px;
+  transition: all 1s;
+  margin-bottom: 5px;
+}
+
+.NewGameBtn:hover {
+  background-color: #00d7ff;
+}
