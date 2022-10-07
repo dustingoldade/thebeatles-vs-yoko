@@ -1,7 +1,6 @@
 import { Grid, Box } from "@mui/material";
 import Key from "./Key";
 import NewGameBtn from "./NewGameBtn";
-import "../../global.css";
 
 const lettersRowOne = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 const lettersRowTwo = ["J", "K", "L", "M", "N", "O", "P", "Q", "R"];
@@ -40,10 +39,7 @@ const Keyboard = (props) => {
         </Grid>
       ))}
 
-      <NewGameBtn
-        buttonTitle="New Game"
-        onNewPhraseHandeler={props.newPhraseHandeler}
-      />
+      <NewGameBtn buttonTitle="New Game" newGame={props.newGame} />
     </Grid>
   );
 };

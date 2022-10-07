@@ -26,11 +26,7 @@ const Modal = (props) => {
       <Box className="Modal__card">
         {ModalContent}
         <WinsaAndLosses winLossScores={props.winLossScores} />
-        <Button
-          sx={{ mt: "1rem" }}
-          variant="contained"
-          onClick={props.modalNewGame}
-        >
+        <Button sx={{ mt: "1rem" }} variant="contained" onClick={props.newGame}>
           Play Again?
         </Button>
       </Box>

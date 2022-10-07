@@ -9,11 +9,7 @@ const NewGameBtn = (props) => {
         sx={{ justifyContent: "center", alignContect: "center" }}
       >
         <div className="NewGameBtn">
-          <Button
-            onClick={props.onNewPhraseHandeler}
-            color="inherit"
-            sx={{ px: "9rem" }}
-          >
+          <Button onClick={props.newGame} color="inherit" sx={{ px: "9rem" }}>
             <Typography variant="h5">{props.buttonTitle}</Typography>
           </Button>
         </div>

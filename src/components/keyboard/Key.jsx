@@ -11,7 +11,6 @@ const Key = (props) => {
       key={`key${props.letter}`}
       sx={{ border: 2, m: "2px" }}
       onClick={() => {
-        props.updateGuessedLetters(props.letter);
         props.onGuessedLetter(props.letter, props.activePhrase);
       }}
       className={additionalClasses}

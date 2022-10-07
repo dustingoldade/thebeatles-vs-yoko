@@ -1,5 +1,4 @@
 import { Box, Grid } from "@mui/material";
-import "../../global.css";
 import "./Scoreboard.css";
 
 const Scoreboard = (props) => {
@@ -9,9 +8,6 @@ const Scoreboard = (props) => {
   const rightGrid =
     scoreBoard.reduce((total, i) => (i === "O" ? total + 1 : total), 0) * 3;
   const centerGrid = 12 - leftGrid - rightGrid;
-
-  console.log(props.beatlesImg);
-  console.log(props.yokoImg);
 
   return (
     <Box className="Scoreboard__container">
