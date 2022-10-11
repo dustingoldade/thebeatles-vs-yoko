@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
 import "./App.css";
+import { useState, useEffect } from "react";
+import { beatlesImages, yokoImages } from "./img/ImgIndex";
+import { phrasesToGuess } from "./helpers/data";
+import { returnRandomItemInArray } from "./helpers/utils";
 import Header from "./components/header/Header";
 import Modal from "./components/modal/Modal";
 import Scoreboard from "./components/scoreboard/Scoreboard";
 import GuessedLetters from "./components/guessedLetters/GuessedLetters";
 import Keyboard from "./components/keyboard/Keyboard";
-import { beatlesImages, yokoImages } from "./img/ImgIndex";
-import { phrasesToGuess } from "./helpers/data";
-import { returnRandomItemInArray } from "./helpers/utils";
 
 function App() {
   const [blockAllLetters, setBlockAllLetters] = useState(true); //used at game start only to block letters
@@ -49,7 +49,7 @@ function App() {
   ////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    if (guessedLettersArray.length < 1) return; //
+    if (guessedLettersArray.length < 1) return;
 
     if (activePhrase.includes(guessedLettersArray[0])) {
       correctGuess();
