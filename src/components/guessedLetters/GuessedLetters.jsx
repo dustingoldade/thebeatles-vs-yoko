@@ -9,8 +9,8 @@ const GuessedLetters = (props) => {
       alignItems="center"
       className="GuessedLetters__height"
     >
-      {props.lettersToDisplay.map((letter) => (
-        <Box minWidth="1.5rem" sx={{ px: "3px" }}>
+      {props.lettersToDisplay.map((letter, i) => (
+        <Box minWidth="1.5rem" sx={{ px: "3px" }} key={"GuessedLetter" + i}>
           <Typography
             variant="h4"
             textAlign="center"

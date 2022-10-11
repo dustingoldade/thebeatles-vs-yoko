@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import "./Scoreboard.css";
 
 const Scoreboard = (props) => {
-  const scoreBoard = [...props.scoreboardArry];
+  const scoreBoard = [...props.scoreboardArray];
   const leftGrid =
     scoreBoard.reduce((total, i) => (i === "X" ? total + 1 : total), 0) * 3;
   const rightGrid =

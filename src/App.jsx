@@ -7,18 +7,18 @@ import GuessedLetters from "./components/guessedLetters/GuessedLetters";
 import Keyboard from "./components/keyboard/Keyboard";
 import { beatlesImages, yokoImages } from "./img/ImgIndex";
 import { phrasesToGuess } from "./helpers/data";
-import { returnRandomItemInArry } from "./helpers/utils";
+import { returnRandomItemInArray } from "./helpers/utils";
 
 function App() {
-  const [blockAllLetters, setBlockAllLetters] = useState(true); //used at game start only to black letters
+  const [blockAllLetters, setBlockAllLetters] = useState(true); //used at game start only to block letters
   const [isModal, setIsModal] = useState(false);
   const [displayWinOrLossModal, setDisplayWinOrLossModa] = useState("");
   const [activeYokoImg, setActiveYokoImg] = useState(yokoImages[0]);
   const [activeBeatlesImg, setActiveBeatlesImg] = useState(beatlesImages[0]);
   const [activePhrase, setActivePhrase] = useState("");
-  const [guessedLettersArry, setGuessedLettersArry] = useState([]);
+  const [guessedLettersArray, setGuessedLettersArray] = useState([]);
   const [lettersToDisplay, setLettersToDisplay] = useState([]);
-  const [scoreboardArry, setScoreBoardArry] = useState(["_", "_", "_", "_"]);
+  const [scoreboardArray, setScoreBoardArray] = useState(["_", "_", "_", "_"]);
   const [winLossScores, setWinLossScored] = useState({
     theBeatles: 0,
     yoko: 0,
@@ -28,54 +28,54 @@ function App() {
   //// Game Play Logic ////
   /////////////////////////
 
-  function newGame() {
+  const newGame = () => {
     setBlockAllLetters(false); //Unblocks all letters (game starts with blocked letters)
 
     //Reset the scoreboard and the letters that have been guessed
-    setGuessedLettersArry([]);
-    setScoreBoardArry(["_", "_", "_", "_"]);
+    setGuessedLettersArray([]);
+    setScoreBoardArray(["_", "_", "_", "_"]);
 
     // Pick new photos -- used in ScoreBoard Component and pick a new random phrase
     newPhotos();
-    setActivePhrase(returnRandomItemInArry(phrasesToGuess));
+    setActivePhrase(returnRandomItemInArray(phrasesToGuess));
 
     //Turn of modal (May or my not be displayed)
     setIsModal(false);
-  }
+  };
 
-  function checkGuessedLetter(letter) {
-    setGuessedLettersArry((prevState) => [letter, ...prevState]);
-  }
+  const checkGuessedLetter = (letter) => {
+    setGuessedLettersArray((prevState) => [letter, ...prevState]);
+  };
   ////////////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    if (guessedLettersArry.length < 1) return;
+    if (guessedLettersArray.length < 1) return; //
 
-    if (activePhrase.includes(guessedLettersArry[0])) {
+    if (activePhrase.includes(guessedLettersArray[0])) {
       correctGuess();
     } else {
       incorrectGuess();
     }
     // Check if the game is won or loss:
     // On Win
-    if (checkIfWin(activePhrase, guessedLettersArry)) {
+    if (checkIfWin(activePhrase, guessedLettersArray)) {
       setDisplayWinOrLossModa("win");
       setIsModal(true);
       setWinLossScored((prevState) => {
-        const tempObj = { ...prevState };
-        tempObj.theBeatles += 1;
-        return tempObj;
+        return { ...prevState, theBeatles: prevState.theBeatles++ };
       });
     }
     // On Loss
     if (checkIfLoss()) {
       setDisplayWinOrLossModa("loss");
       setIsModal(true);
-      winLossScores.yoko += 1;
+      setWinLossScored((prevState) => {
+        return { ...prevState, yoko: prevState.yoko++ };
+      });
     }
-  }, [guessedLettersArry]);
+  }, [guessedLettersArray]);
 
-  function checkIfWin(activePhrase, guessedLetters) {
+  const checkIfWin = (activePhrase, guessedLetters) => {
     for (let i in activePhrase) {
       const activeLetter = activePhrase[i];
       if (activeLetter !== " ") {
@@ -87,31 +87,30 @@ function App() {
       }
     }
     return true;
-  }
+  };
 
-  function checkIfLoss() {
-    if (scoreboardArry.includes("X") || scoreboardArry.includes("_"))
-      return false;
-    return true;
-  }
+  const checkIfLoss = () => {
+    if (scoreboardArray[0] === "O") return true;
+    return false;
+  };
 
-  function correctGuess() {
-    for (let i in scoreboardArry) {
-      if (scoreboardArry[i] !== "X") {
-        scoreboardArry[i] = "X";
+  const correctGuess = () => {
+    for (let i in scoreboardArray) {
+      if (scoreboardArray[i] !== "X") {
+        scoreboardArray[i] = "X";
         break;
       }
     }
-  }
-  function incorrectGuess() {
-    for (let i in scoreboardArry) {
-      const reverseIndex = scoreboardArry.length - 1 - i;
-      if (scoreboardArry[reverseIndex] !== "O") {
-        scoreboardArry[reverseIndex] = "O";
+  };
+  const incorrectGuess = () => {
+    for (let i in scoreboardArray) {
+      const reverseIndex = scoreboardArray.length - 1 - i;
+      if (scoreboardArray[reverseIndex] !== "O") {
+        scoreboardArray[reverseIndex] = "O";
         return;
       }
     }
-  }
+  };
   //############################################################################################################
 
   /////////////////////////
@@ -119,15 +118,15 @@ function App() {
   /////////////////////////
 
   // Sets the photos displayed in the Scoredboard component to new, random photos:
-  function newPhotos() {
-    setActiveYokoImg(returnRandomItemInArry(yokoImages));
-    setActiveBeatlesImg(returnRandomItemInArry(beatlesImages));
-  }
+  const newPhotos = () => {
+    setActiveYokoImg(returnRandomItemInArray(yokoImages));
+    setActiveBeatlesImg(returnRandomItemInArray(beatlesImages));
+  };
 
   useEffect(() => {
     const tempArray = [];
     for (const letter of activePhrase) {
-      if (guessedLettersArry.includes(letter)) {
+      if (guessedLettersArray.includes(letter)) {
         tempArray.push(letter);
       } else if (letter === " ") {
         tempArray.push("");
@@ -136,7 +135,7 @@ function App() {
       }
     }
     setLettersToDisplay(tempArray);
-  }, [guessedLettersArry, activePhrase]);
+  }, [guessedLettersArray, activePhrase]);
   //############################################################################################################
   return (
     <>
@@ -152,7 +151,7 @@ function App() {
       )}
       <Header />
       <Scoreboard
-        scoreboardArry={scoreboardArry}
+        scoreboardArray={scoreboardArray}
         yokoImg={activeYokoImg}
         beatlesImg={activeBeatlesImg}
       />
@@ -160,7 +159,7 @@ function App() {
       <Keyboard
         blockAllLetters={blockAllLetters}
         newGame={newGame}
-        guessedLettersArry={guessedLettersArry}
+        guessedLettersArray={guessedLettersArray}
         onGuessedLetter={checkGuessedLetter}
         activePhrase={activePhrase}
       />

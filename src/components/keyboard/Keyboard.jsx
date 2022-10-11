@@ -9,7 +9,7 @@ const letterRows = [lettersRowOne, lettersRowTwo, lettersRowThree];
 
 const Keyboard = (props) => {
   function isLetterGuessed(letter) {
-    return props.guessedLettersArry.includes(letter);
+    return props.guessedLettersArray.includes(letter);
   }
 
   return (
@@ -19,20 +19,21 @@ const Keyboard = (props) => {
       justifyContent="center"
       alignItems="center"
     >
-      {letterRows.map((row) => (
-        <Grid item xs={3}>
+      {letterRows.map((row, i) => (
+        <Grid item xs={3} key={i}>
           <Box
             display="flex"
             sx={{ justifyContent: "center", alignContect: "center" }}
           >
             {row.map((letter) => (
               <Key
-                updateGuessedLetters={props.guessedLettersArryHandler}
+                updateGuessedLetters={props.guessedLettersArrayHandler}
                 letter={letter}
                 isGuessed={isLetterGuessed(letter)}
                 onGuessedLetter={props.onGuessedLetter}
                 activePhrase={props.activePhrase}
                 blockAllLetters={props.blockAllLetters}
+                key={letter}
               />
             ))}
           </Box>
