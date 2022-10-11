@@ -43,15 +43,15 @@ function App() {
     setIsModal(false);
   }
 
-  function checkGuessedLetter(letter, activePhrase) {
-    ////////////////////////////////////////////////////////////////////
-    // THIS IS WEAK //
-    // Here -- we need to update the state with the setter. However, the change in state is put later in priority than the correctGuess or incorrectGeuess functions that are called immediately after,  which causes bugs. To get around this, I pushed the letter the the guessedLettersArray, which is then temporatily apart the guessedLettersArry as it's paddes through the other functions, but then dismissed in the state update.... It works, but it's sloppy.
+  function checkGuessedLetter(letter) {
     setGuessedLettersArry((prevState) => [letter, ...prevState]);
-    guessedLettersArry.push(letter);
-    ////////////////////////////////////////////////////////////////////
+  }
+  ////////////////////////////////////////////////////////////////////
 
-    if (activePhrase.includes(letter)) {
+  useEffect(() => {
+    if (guessedLettersArry.length < 1) return;
+
+    if (activePhrase.includes(guessedLettersArry[0])) {
       correctGuess();
     } else {
       incorrectGuess();
@@ -61,15 +61,19 @@ function App() {
     if (checkIfWin(activePhrase, guessedLettersArry)) {
       setDisplayWinOrLossModa("win");
       setIsModal(true);
-      winLossScores.theBeatles += 1;
+      setWinLossScored((prevState) => {
+        const tempObj = { ...prevState };
+        tempObj.theBeatles += 1;
+        return tempObj;
+      });
     }
     // On Loss
     if (checkIfLoss()) {
-      winLossScores.yoko += 1;
       setDisplayWinOrLossModa("loss");
       setIsModal(true);
+      winLossScores.yoko += 1;
     }
-  }
+  }, [guessedLettersArry]);
 
   function checkIfWin(activePhrase, guessedLetters) {
     for (let i in activePhrase) {
