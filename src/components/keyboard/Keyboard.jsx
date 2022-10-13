@@ -1,6 +1,8 @@
 import { Grid, Box } from "@mui/material";
 import Key from "./Key";
 import NewGameBtn from "./NewGameBtn";
+// VI_COMMENT: example of having the centralized source of constants
+import { JUSTIFY_CONTENT_CENTER, ALIGN_ITEMS_CENTER } from "../../constants";
 
 const lettersRowOne = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 const lettersRowTwo = ["J", "K", "L", "M", "N", "O", "P", "Q", "R"];
@@ -27,7 +29,7 @@ const Keyboard = (props) => {
         <Grid item xs={3} key={i}>
           <Box
             display="flex"
-            sx={{ justifyContent: "center", alignContect: "center" }} // VI_COMMENT: alignContent? typo?
+            sx={{ justifyContent: JUSTIFY_CONTENT_CENTER, alignContect: "center" }} // VI_COMMENT: alignContent? typo?
           >
             {row.map((letter) => (
               <Key

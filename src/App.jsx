@@ -11,7 +11,7 @@ import Keyboard from "./components/keyboard/Keyboard";
 
 // VI_COMMENT: review your comments
 // there are places, where they are unnecessary, e.g.
-// "Unblocks all letters (game starts with blocked letters)"  -the function
+// "Unblocks all letters (game starts with blocked letters)" - the function
 // which is called there has a good meaningful name, so it's obvious
 // from the code what's happening
 
@@ -22,7 +22,7 @@ function App() {
   // VI_COMMENT: I guess there is too much useStates. We could combine 
   // a few to one to avoid unnecessary re-renders. Like:
   //  - activeYokoImg + activeBeatlesImg = {activeYokoImg: ..., activeBeatlesImg: ...}
-  //  - I feel like lettersToDisplay and lettersToDisplay could be one array
+  //  - I feel like lettersToDisplay and guessedLettersArray could be one array <- disregard
   const [blockAllLetters, setBlockAllLetters] = useState(true); //used at game start only to block letters
   const [isModal, setIsModal] = useState(false);
   const [displayWinOrLossModal, setDisplayWinOrLossModa] = useState("");
@@ -42,7 +42,7 @@ function App() {
   /////////////////////////
 
   const newGame = () => {
-    setBlockAllLetters(false); //Unblocks all letters (game starts with blocked letters)
+    setBlockAllLetters(false); // Unblocks all letters (game starts with blocked letters)
 
     //Reset the scoreboard and the letters that have been guessed
     setGuessedLettersArray([]);
@@ -84,6 +84,7 @@ function App() {
     }
     // On Loss
     if (checkIfLoss()) {
+      // VI_COMMENT: typo in "setDisplayWinOrLossModa" -> "setDisplayWinOrLossModal"
       setDisplayWinOrLossModa("loss");  // VI_COMMENT: would go with boolean
       setIsModal(true);
       setWinLossScored((prevState) => {
@@ -95,8 +96,8 @@ function App() {
   const checkIfWin = (activePhrase, guessedLetters) => {
     for (let i in activePhrase) {
       const activeLetter = activePhrase[i];
-      if (activeLetter !== " ") {
-        if (guessedLetters.includes(activeLetter)) { // VI_COMMENT:empty if block? use !
+      if (activeLetter.trim()) { // VI_COMMENT: use trim() ?
+        if (guessedLetters.includes(activeLetter)) { // VI_COMMENT: empty if block? use !
         } else {
           return false;
         }
