@@ -1,6 +1,7 @@
 import { Typography, Button } from "@mui/material";
 import "./Key.css";
 
+// VI_COMMENT: Key component should have a separate folder as well as "New Game Btn"
 const Key = (props) => {
   let additionalClasses = `Key ${props.isGuessed && "Key__disabled"} ${
     props.blockAllLetters && "Key__disabled"

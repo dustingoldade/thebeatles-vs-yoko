@@ -3,6 +3,8 @@ import "./Scoreboard.css";
 
 const Scoreboard = (props) => {
   const scoreBoard = [...props.scoreboardArray];
+  // VI_COMMENT: didn't get why these calculations are needed? I mean
+  // Why to store X and O if you could use 1, 0, -1 
   const leftGrid =
     scoreBoard.reduce((total, i) => (i === "X" ? total + 1 : total), 0) * 3;
   const rightGrid =
