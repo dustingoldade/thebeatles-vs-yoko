@@ -9,7 +9,20 @@ import Scoreboard from "./components/scoreboard/Scoreboard";
 import GuessedLetters from "./components/guessedLetters/GuessedLetters";
 import Keyboard from "./components/keyboard/Keyboard";
 
+// VI_COMMENT: review your comments
+// there are places, where they are unnecessary, e.g.
+// "Unblocks all letters (game starts with blocked letters)"  -the function
+// which is called there has a good meaningful name, so it's obvious
+// from the code what's happening
+
+// VI_COMMENT: function App() { => const App = () => {...}
+// Just like you did with other components, like Key or Keyboard
 function App() {
+
+  // VI_COMMENT: I guess there is too much useStates. We could combine 
+  // a few to one to avoid unnecessary re-renders. Like:
+  //  - activeYokoImg + activeBeatlesImg = {activeYokoImg: ..., activeBeatlesImg: ...}
+  //  - I feel like lettersToDisplay and lettersToDisplay could be one array
   const [blockAllLetters, setBlockAllLetters] = useState(true); //used at game start only to block letters
   const [isModal, setIsModal] = useState(false);
   const [displayWinOrLossModal, setDisplayWinOrLossModa] = useState("");
@@ -48,18 +61,22 @@ function App() {
   };
   ////////////////////////////////////////////////////////////////////
 
+  // VI_COMMENT: need to split this into smaller pieces, it's hard to read
+  // when you have to scroll the function
   useEffect(() => {
     if (guessedLettersArray.length < 1) return;
 
+    // VI_COMMENT: you could use a shorthand of "? :" instead of if/else
     if (activePhrase.includes(guessedLettersArray[0])) {
       correctGuess();
     } else {
       incorrectGuess();
     }
+
     // Check if the game is won or loss:
     // On Win
     if (checkIfWin(activePhrase, guessedLettersArray)) {
-      setDisplayWinOrLossModa("win");
+      setDisplayWinOrLossModa("win"); // VI_COMMENT: would go with boolean
       setIsModal(true);
       setWinLossScored((prevState) => {
         return { ...prevState, theBeatles: prevState.theBeatles++ };
@@ -67,7 +84,7 @@ function App() {
     }
     // On Loss
     if (checkIfLoss()) {
-      setDisplayWinOrLossModa("loss");
+      setDisplayWinOrLossModa("loss");  // VI_COMMENT: would go with boolean
       setIsModal(true);
       setWinLossScored((prevState) => {
         return { ...prevState, yoko: prevState.yoko++ };
@@ -79,11 +96,11 @@ function App() {
     for (let i in activePhrase) {
       const activeLetter = activePhrase[i];
       if (activeLetter !== " ") {
-        if (guessedLetters.includes(activeLetter)) {
+        if (guessedLetters.includes(activeLetter)) { // VI_COMMENT:empty if block? use !
         } else {
           return false;
         }
-      } else {
+      } else { // VI_COMMENT: no need in this else block
       }
     }
     return true;
@@ -102,6 +119,7 @@ function App() {
       }
     }
   };
+
   const incorrectGuess = () => {
     for (let i in scoreboardArray) {
       const reverseIndex = scoreboardArray.length - 1 - i;

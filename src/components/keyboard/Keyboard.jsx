@@ -12,6 +12,10 @@ const Keyboard = (props) => {
     return props.guessedLettersArray.includes(letter);
   }
 
+  // VI_COMMENT: I would opt out all textual values to CONSTANTS at the top
+  // e.g. you have "center" 4 times, which might be just one CONSTANT
+  // Similar to "New game" text: I'd suggest to opt in out to a separate folder
+  // called "locales" and store "en.json" file there
   return (
     <Grid
       container
@@ -23,7 +27,7 @@ const Keyboard = (props) => {
         <Grid item xs={3} key={i}>
           <Box
             display="flex"
-            sx={{ justifyContent: "center", alignContect: "center" }}
+            sx={{ justifyContent: "center", alignContect: "center" }} // VI_COMMENT: alignContent? typo?
           >
             {row.map((letter) => (
               <Key
