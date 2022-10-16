@@ -1,22 +1,32 @@
 import WinsaAndLosses from "./WinsAndLosses";
 import { Box, Typography, Button } from "@mui/material";
+import { text } from "../../helpers/en.json";
+import { muiStyles } from "../../helpers/muiStyles";
 import "./Modal.css";
+const { Winner_Modal_Phrase, Loser_Modal_Phrase, Play_Again_Button } = text;
+const { TEXT_VARIANT_H5, TEXT_VARIANT_H6 } = muiStyles;
 
-const Modal = (props) => {
-  let pic = props.winnerPhoto;
-  let phrase = "You got the correct song!!";
+const Modal = ({
+  activeImgs,
+  activePhrase,
+  winModalText,
+  winLossScores,
+  newGame,
+}) => {
+  let pic = activeImgs.activeBeatlesImg;
+  let phrase = Winner_Modal_Phrase;
 
-  if (props.winOrLoss === "loss") {
-    pic = props.loserPhoto;
-    phrase = "Loser! The correct song was: ";
+  if (!winModalText) {
+    pic = activeImgs.activeYokoImg;
+    phrase = Loser_Modal_Phrase;
   }
 
   const ModalContent = (
     <>
       <img src={pic} className="Modal__img" />
       <Box sx={{ py: "1rem" }}>
-        <Typography variant="h5">{phrase}</Typography>
-        <Typography variant="h6">"{props.activePhrase}"</Typography>
+        <Typography variant={TEXT_VARIANT_H5}>{phrase}</Typography>
+        <Typography variant={TEXT_VARIANT_H6}>"{activePhrase}"</Typography>
       </Box>
     </>
   );
@@ -25,9 +35,9 @@ const Modal = (props) => {
     <Box className="Modal__overlay">
       <Box className="Modal__card">
         {ModalContent}
-        <WinsaAndLosses winLossScores={props.winLossScores} />
-        <Button sx={{ mt: "1rem" }} variant="contained" onClick={props.newGame}>
-          Play Again?
+        <WinsaAndLosses winLossScores={winLossScores} />
+        <Button sx={{ mt: "1rem" }} variant="contained" onClick={newGame}>
+          {Play_Again_Button}
         </Button>
       </Box>
     </Box>

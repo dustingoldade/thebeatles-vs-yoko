@@ -1,5 +1,5 @@
 export const phrasesToGuess = [
-  // "LET IT BE",
+  "LET IT BE",
   // "I AM THE WALRUS",
   // "HERE COMES THE SUN",
   // "A HARD DAYS NIGHT",

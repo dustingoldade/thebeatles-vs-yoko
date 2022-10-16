@@ -1,16 +1,23 @@
 import { Grid, Box } from "@mui/material";
-import Key from "./Key";
-import NewGameBtn from "./NewGameBtn";
+import Key from "./key/Key";
+import { muiStyles } from "../../helpers/muiStyles";
+const { DISPLAY_FLEX, ALIGN_ITEMS_CENTER, DIRECTION_COLUMN } = muiStyles;
 
 const lettersRowOne = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 const lettersRowTwo = ["J", "K", "L", "M", "N", "O", "P", "Q", "R"];
 const lettersRowThree = ["S", "T", "U", "V", "W", "X", "Y", "Z"];
 const letterRows = [lettersRowOne, lettersRowTwo, lettersRowThree];
 
-const Keyboard = (props) => {
-  function isLetterGuessed(letter) {
-    return props.guessedLettersArray.includes(letter);
-  }
+const Keyboard = ({
+  guessedLettersArray,
+  guessedLettersArrayHandler,
+  onGuessedLetter,
+  activePhrase,
+  blockAllLetters,
+}) => {
+  const isLetterGuessed = (letter) => {
+    return guessedLettersArray.includes(letter);
+  };
 
   // VI_COMMENT: I would opt out all textual values to CONSTANTS at the top
   // e.g. you have "center" 4 times, which might be just one CONSTANT
@@ -19,32 +26,26 @@ const Keyboard = (props) => {
   return (
     <Grid
       container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
+      direction={DIRECTION_COLUMN}
+      alignItems={ALIGN_ITEMS_CENTER}
     >
       {letterRows.map((row, i) => (
         <Grid item xs={3} key={i}>
-          <Box
-            display="flex"
-            sx={{ justifyContent: "center", alignContect: "center" }} // VI_COMMENT: alignContent? typo?
-          >
+          <Box display={DISPLAY_FLEX}>
             {row.map((letter) => (
               <Key
-                updateGuessedLetters={props.guessedLettersArrayHandler}
+                updateGuessedLetters={guessedLettersArrayHandler}
                 letter={letter}
                 isGuessed={isLetterGuessed(letter)}
-                onGuessedLetter={props.onGuessedLetter}
-                activePhrase={props.activePhrase}
-                blockAllLetters={props.blockAllLetters}
+                onGuessedLetter={onGuessedLetter}
+                activePhrase={activePhrase}
+                blockAllLetters={blockAllLetters}
                 key={letter}
               />
             ))}
           </Box>
         </Grid>
       ))}
-
-      <NewGameBtn buttonTitle="New Game" newGame={props.newGame} />
     </Grid>
   );
 };

@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 
-const WinsaAndLosses = (props) => {
+const WinsaAndLosses = ({ winLossScores }) => {
   return (
     <Box>
-      <Typography>The Beatles: {props.winLossScores.theBeatles}</Typography>
-      <Typography>Yoko Ono: {props.winLossScores.yoko}</Typography>
+      <Typography>The Beatles: {winLossScores.theBeatles}</Typography>
+      <Typography>Yoko Ono: {winLossScores.yoko}</Typography>
     </Box>
   );
 };

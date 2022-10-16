@@ -1,16 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import "./Scoreboard.css";
 
-const Scoreboard = (props) => {
-  const scoreBoard = [...props.scoreboardArray];
-  // VI_COMMENT: didn't get why these calculations are needed? I mean
-  // Why to store X and O if you could use 1, 0, -1 
-  const leftGrid =
-    scoreBoard.reduce((total, i) => (i === "X" ? total + 1 : total), 0) * 3;
-  const rightGrid =
-    scoreBoard.reduce((total, i) => (i === "O" ? total + 1 : total), 0) * 3;
-  const centerGrid = 12 - leftGrid - rightGrid;
-
+const Scoreboard = ({
+  activeImgs: { activeBeatlesImg, activeYokoImg },
+  scoreBoardGridSizes: { leftGrid, rightGrid, centerGrid },
+}) => {
   return (
     <Box className="Scoreboard__container">
       <Grid container className="Scoreboard__img">
@@ -18,7 +12,7 @@ const Scoreboard = (props) => {
           item
           xs={leftGrid}
           sx={{
-            backgroundImage: `url(${props.beatlesImg})`,
+            backgroundImage: `url(${activeBeatlesImg})`,
           }}
           className="Scoreboard__left-grid"
         />
@@ -27,7 +21,7 @@ const Scoreboard = (props) => {
           item
           xs={rightGrid}
           sx={{
-            backgroundImage: `url(${props.yokoImg})`,
+            backgroundImage: `url(${activeYokoImg})`,
           }}
           className="Scoreboard__right-grid"
         />
