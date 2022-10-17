@@ -1,10 +1,10 @@
 import WinsaAndLosses from "./WinsAndLosses";
-import { Box, Typography, Button } from "@mui/material";
-import { text } from "../../helpers/en.json";
-import { muiStyles } from "../../helpers/muiStyles";
 import "./Modal.css";
-const { Winner_Modal_Phrase, Loser_Modal_Phrase, Play_Again_Button } = text;
-const { TEXT_VARIANT_H5, TEXT_VARIANT_H6 } = muiStyles;
+import { Box, Typography, Button } from "@mui/material";
+import jsonText from "../../locales/en.json";
+import jsonMuiStyles from "../../locales/muiStyles.json";
+const { Winner_Modal_Phrase, Loser_Modal_Phrase, Play_Again_Button } = jsonText;
+const { TEXT_VARIANT_H5, TEXT_VARIANT_H6 } = jsonMuiStyles;
 
 const Modal = ({
   activeImgs,

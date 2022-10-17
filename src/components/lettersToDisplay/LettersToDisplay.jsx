@@ -1,13 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import "./LettersToDisplay.css";
-import { muiStyles } from "../../helpers/muiStyles";
+import jsonMuiStyles from "../../locales/muiStyles.json";
 const {
   DISPLAY_FLEX,
   JUSTIFY_CONTENT_CENTER,
   ALIGN_ITEMS_CENTER,
   TEXT_VARIANT_H4,
   TEXT_ALIGN_CENTER,
-} = muiStyles;
+} = jsonMuiStyles;
 
 const LettersToDisplay = ({ lettersToDisplay }) => {
   return (

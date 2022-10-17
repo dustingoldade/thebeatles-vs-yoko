@@ -1,7 +1,7 @@
 import { Typography, Button } from "@mui/material";
 import "./Key.css";
-import { muiStyles } from "../../../helpers/muiStyles";
-const { TEXT_VARIANT_H5 } = muiStyles;
+import jsonMuiStyles from "../../../locales/muiStyles.json";
+const { TEXT_VARIANT_H5 } = jsonMuiStyles;
 
 const Key = ({
   isGuessed,

@@ -1,7 +1,7 @@
 import { Grid, Box } from "@mui/material";
 import Key from "./key/Key";
-import { muiStyles } from "../../helpers/muiStyles";
-const { DISPLAY_FLEX, ALIGN_ITEMS_CENTER, DIRECTION_COLUMN } = muiStyles;
+import jsonMuiStyles from "../../locales/muiStyles.json";
+const { DISPLAY_FLEX, ALIGN_ITEMS_CENTER, DIRECTION_COLUMN } = jsonMuiStyles;
 
 const lettersRowOne = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 const lettersRowTwo = ["J", "K", "L", "M", "N", "O", "P", "Q", "R"];
@@ -19,10 +19,6 @@ const Keyboard = ({
     return guessedLettersArray.includes(letter);
   };
 
-  // VI_COMMENT: I would opt out all textual values to CONSTANTS at the top
-  // e.g. you have "center" 4 times, which might be just one CONSTANT
-  // Similar to "New game" text: I'd suggest to opt in out to a separate folder
-  // called "locales" and store "en.json" file there
   return (
     <Grid
       container

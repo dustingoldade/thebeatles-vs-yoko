@@ -1,8 +1,8 @@
 import { Typography, Button, Grid, Box } from "@mui/material";
 import "./NewGameBtn.css";
-import { muiStyles } from "../../helpers/muiStyles";
+import jsonMuiStyles from "../../locales/muiStyles.json";
 const { DISPLAY_FLEX, JUSTIFY_CONTENT_CENTER, COLOR_INHERIT, TEXT_VARIANT_H5 } =
-  muiStyles;
+  jsonMuiStyles;
 
 const NewGameBtn = ({ newGame, buttonTitle }) => {
   return (

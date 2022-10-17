@@ -1,14 +1,15 @@
 import { Box, Typography } from "@mui/material";
-import { text } from "../../helpers/en.json";
 import "./Header.css";
-import { muiStyles } from "../../helpers/muiStyles";
+import jsonText from "../../locales/en.json";
+import jsonMuiStyles from "../../locales/muiStyles.json";
 const {
   DISPLAY_FLEX,
   JUSTIFY_CONTENT_CENTER,
   ALIGN_ITEMS_CENTER,
   TEXT_VARIANT_H4,
   TEXT_ALIGN_CENTER,
-} = muiStyles;
+} = jsonMuiStyles;
+const { Game_Title } = jsonText;
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
         className="Header__font-family Header__color"
         sx={{ my: 1 }}
       >
-        {text.Game_Title}
+        {Game_Title}
       </Typography>
     </Box>
   );

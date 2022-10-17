@@ -1,7 +1,0 @@
-export const text = {
-  New_Game_Button_Label: "New Game",
-  Loser_Modal_Phrase: "Loser! The correct song was: ",
-  Winner_Modal_Phrase: "You got the correct song!!",
-  Play_Again_Button: "Play Again?",
-  Game_Title: "The Beatles vs Yoko Ono",
-};

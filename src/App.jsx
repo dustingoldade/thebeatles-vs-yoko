@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { beatlesImages, yokoImages } from "./img/ImgIndex";
+import { beatlesImages, yokoImages } from "./img/imgIndex";
 import { phrasesToGuess } from "./helpers/data";
 import { returnRandomItemInArray, returnGridSize } from "./helpers/utils";
 import Header from "./components/header/Header";
@@ -9,8 +9,8 @@ import Scoreboard from "./components/scoreboard/Scoreboard";
 import LettersToDisplay from "./components/lettersToDisplay/LettersToDisplay";
 import Keyboard from "./components/keyboard/Keyboard";
 import NewGameBtn from "./components/newGameBtn/NewGameBtn";
-import { text } from "./helpers/en.json";
-const { New_Game_Button_Label } = text;
+import jsonText from "./locales/en.json";
+const { New_Game_Button_Label } = jsonText;
 
 const App = () => {
   const [blockAllLetters, setBlockAllLetters] = useState(true);
